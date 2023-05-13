@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class PokedexBeApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PokedexBeApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(PokedexBeApplication.class, args);
+    }
 
 }
