@@ -48,11 +48,11 @@ public class Pokemon {
     @Column(name = "defence", nullable = false)
     int defence;
 
-    @Column(name = "special_defence", nullable = false)
-    int specialDefence;
-
     @Column(name = "special_attack", nullable = false)
     int specialAttack;
+
+    @Column(name = "special_defence", nullable = false)
+    int specialDefence;
 
     @Column(name = "speed", nullable = false)
     int speed;
