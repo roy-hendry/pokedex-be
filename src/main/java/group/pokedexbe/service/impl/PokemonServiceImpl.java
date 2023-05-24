@@ -6,6 +6,9 @@ import group.pokedexbe.repository.PokemonRepository;
 import group.pokedexbe.service.PokemonService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PokemonServiceImpl implements PokemonService {
     // The DI for the repo of the model we are using is PokemonRepo
@@ -28,6 +31,18 @@ public class PokemonServiceImpl implements PokemonService {
         PokemonDTO pokemonResponse = mapToDTO(newPokemon);
 
         return pokemonResponse;
+    }
+
+    @Override
+    public List<PokemonDTO> getAllPokemon() {
+        // Finds all the pokemon and puts them in a list
+        List<Pokemon> pokemonList = pokemonRepository.findAll();
+
+        // Uses the stream map to get all other pokemon and pass them to the list
+        return pokemonList
+                .stream()
+                .map(pokemon -> mapToDTO(pokemon))
+                .collect(Collectors.toList());
     }
 
     // Converts the DTO (from client) to entity (model) this contains all the fields from the model e.g. first name etc

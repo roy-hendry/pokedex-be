@@ -4,10 +4,9 @@ import group.pokedexbe.dto.PokemonDTO;
 import group.pokedexbe.service.PokemonService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 // Tells Spring this is a REST controller
 @RestController
@@ -22,11 +21,19 @@ public class PokemonController {
         this.pokemonService = pokemonService;
     }
 
-    // Request POST mapping to create an entry to the DB
+    // Tells Spring this is a POST Request to create an entry to the DB
     @PostMapping
     // Creates the (C of our CRUD methods) which takes in the DTO model - takes the input as JSON
     public ResponseEntity<PokemonDTO> createPokemon(@RequestBody PokemonDTO pokemonDTO) {
         // Sends the response back to the REST API to say it has been created
         return new ResponseEntity<>(pokemonService.createPokemon(pokemonDTO), HttpStatus.CREATED);
+    }
+
+    // Tells Spring this is a GET request
+    @GetMapping
+    // Gets all the pokemon (R of our CRUD methods)
+    public List<PokemonDTO> getAllPokemon() {
+        // Uses the method in the service to return get all
+        return pokemonService.getAllPokemon();
     }
 }
