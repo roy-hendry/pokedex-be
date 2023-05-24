@@ -9,4 +9,6 @@ public interface PokemonService {
     PokemonDTO createPokemon(PokemonDTO pokemonDTO);
 
     List<PokemonDTO> getAllPokemon();
+
+    PokemonDTO getPokemonById(Long id);
 }

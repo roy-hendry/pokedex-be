@@ -36,4 +36,12 @@ public class PokemonController {
         // Uses the method in the service to return get all
         return pokemonService.getAllPokemon();
     }
+
+    // Tells Spring this is a GET request
+    @GetMapping("/{id}")
+    // Gets a single pokemon by their id (R of our CRUD methods)
+    public ResponseEntity<PokemonDTO> getPokemonById(@PathVariable(name = "id")long id) {
+        // return status ok message along with the pokemonDTO
+        return ResponseEntity.ok(pokemonService.getPokemonById(id));
+    }
 }

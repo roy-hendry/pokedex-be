@@ -20,7 +20,7 @@ public class ResourceNotFoundException extends RuntimeException {
     // Constructor for the class
     public ResourceNotFoundException(String resourceName, String fieldName, long fieldValue) {
 
-        // This will show the exception in string format e.g. 'Pokemon not found with id: -10'
+        // This will show the exception in string format e.g. 'Pokémon not found with id: -10'
         super(String.format("%s not found with %s: %s", resourceName, fieldName, fieldValue));
 
         this.resourceName = resourceName;

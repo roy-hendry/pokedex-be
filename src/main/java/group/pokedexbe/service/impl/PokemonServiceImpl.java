@@ -1,6 +1,7 @@
 package group.pokedexbe.service.impl;
 
 import group.pokedexbe.dto.PokemonDTO;
+import group.pokedexbe.exceptions.ResourceNotFoundException;
 import group.pokedexbe.model.Pokemon;
 import group.pokedexbe.repository.PokemonRepository;
 import group.pokedexbe.service.PokemonService;
@@ -43,6 +44,16 @@ public class PokemonServiceImpl implements PokemonService {
                 .stream()
                 .map(pokemon -> mapToDTO(pokemon))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public PokemonDTO getPokemonById(Long id) {
+        // Finds pokemon by its id if there is no pokemon with that id then throw the status code for the not found
+        // custom exception we made
+        Pokemon pokemon = pokemonRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Pokémon", "id", id));
+
+        return mapToDTO(pokemon);
     }
 
     // Converts the DTO (from client) to entity (model) this contains all the fields from the model e.g. first name etc
