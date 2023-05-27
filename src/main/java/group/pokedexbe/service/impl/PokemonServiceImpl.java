@@ -57,10 +57,20 @@ public class PokemonServiceImpl implements PokemonService {
     }
 
     @Override
+    public void deletePokemonById(long id) {
+        // Get pokemon by id from the database - the same code as get id, so that we can get the pokemon by its id
+        Pokemon pokemon = pokemonRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Pokémon", "id", id));
+
+        // Deletes the pokemon by its id
+        pokemonRepository.delete(pokemon);
+    }
+
+    @Override
     public PokemonDTO updatePokemon(PokemonDTO pokemonDTO, long id) {
         // Get pokemon by id from the database - the same code as get id, so that we can get the pokemon by its id
         Pokemon pokemon = pokemonRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Pokemon", "id", id));
+                .orElseThrow(() -> new ResourceNotFoundException("Pokémon", "id", id));
 
         // Now we have the object we can update its values
         pokemon.setName(pokemonDTO.getName());
@@ -79,16 +89,6 @@ public class PokemonServiceImpl implements PokemonService {
 
         // Returns the new values as a response DTO for the client
         return mapToDTO(updatedPokemon);
-    }
-
-    @Override
-    public void deletePokemonById(long id) {
-        // Get pokemon by id from the database - the same code as get id, so that we can get the pokemon by its id
-        Pokemon pokemon = pokemonRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Pokemon", "id", id));
-
-        // Deletes the pokemon by its id
-        pokemonRepository.delete(pokemon);
     }
 
     // Converts the DTO (from client) to entity (model) this contains all the fields from the model e.g. first name etc
@@ -123,6 +123,7 @@ public class PokemonServiceImpl implements PokemonService {
         pokemonDTO.setDefence(pokemon.getDefence());
         pokemonDTO.setSpecialAttack(pokemon.getSpecialAttack());
         pokemonDTO.setSpecialDefence(pokemon.getSpecialDefence());
+        pokemonDTO.setSpeed(pokemon.getSpeed());
 
         return pokemonDTO;
     }

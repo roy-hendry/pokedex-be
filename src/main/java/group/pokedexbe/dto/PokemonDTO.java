@@ -19,7 +19,7 @@ public class PokemonDTO {
     private int hp;
     private int attack;
     private int defence;
-    private int specialDefence;
     private int specialAttack;
+    private int specialDefence;
     private int speed;
 }
