@@ -42,18 +42,29 @@ public class PokemonController {
     // Gets a single pokemon by their id (R of our CRUD methods)
     public ResponseEntity<PokemonDTO> getPokemonById(@PathVariable(name = "id")long id) {
         // Return status ok message along with the pokemonDTO
-        return ResponseEntity.ok(pokemonService.getPokemonById(id));
+        return new ResponseEntity<>(pokemonService.getPokemonById(id), HttpStatus.OK);
     }
 
-    //Tells Spring this is a PUT request
+    // Tells Spring this is a PUT request
     @PutMapping("/{id}")
     // @RequestBody is the new input to update the database - it takes input as JSON
-    // gets the pokemon to update passing in the url bound to the @path variable as id
+    // Gets the pokemon to update by passing in the id via the @PathVariable
     public ResponseEntity<PokemonDTO> updatePokemon(@RequestBody PokemonDTO pokemonDTO, @PathVariable(name = "id")long id) {
         // Updates the DB with the new values
         PokemonDTO pokemonResponse = pokemonService.updatePokemon(pokemonDTO, id);
 
         // Returns status ok message along with the model values that have been updated
         return new ResponseEntity<>(pokemonResponse, HttpStatus.OK);
+    }
+
+    // Tells Spring this is a DELETE request
+    @DeleteMapping("/{id}")
+    // Gets the pokemon to delete by passing in the id via the @PathVariable
+    public ResponseEntity<String> deletePokemon(@PathVariable(name = "id")long id) {
+        // Passes the id of the pokemon we want to delete
+        pokemonService.deletePokemonById(id);
+
+        // Returns status to say that we have successfully deleted
+        return new ResponseEntity<>("Pokemon has been deleted successfully", HttpStatus.OK);
     }
 }

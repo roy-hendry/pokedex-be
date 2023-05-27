@@ -58,7 +58,7 @@ public class PokemonServiceImpl implements PokemonService {
 
     @Override
     public PokemonDTO updatePokemon(PokemonDTO pokemonDTO, long id) {
-        // Get pokemon by ID from the database - the same code as get id, so that we can get the pokemon by its id
+        // Get pokemon by id from the database - the same code as get id, so that we can get the pokemon by its id
         Pokemon pokemon = pokemonRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Pokemon", "id", id));
 
@@ -79,6 +79,16 @@ public class PokemonServiceImpl implements PokemonService {
 
         // Returns the new values as a response DTO for the client
         return mapToDTO(updatedPokemon);
+    }
+
+    @Override
+    public void deletePokemonById(long id) {
+        // Get pokemon by id from the database - the same code as get id, so that we can get the pokemon by its id
+        Pokemon pokemon = pokemonRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Pokemon", "id", id));
+
+        // Deletes the pokemon by its id
+        pokemonRepository.delete(pokemon);
     }
 
     // Converts the DTO (from client) to entity (model) this contains all the fields from the model e.g. first name etc

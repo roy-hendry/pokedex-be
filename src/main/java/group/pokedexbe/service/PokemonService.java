@@ -14,4 +14,6 @@ public interface PokemonService {
     PokemonDTO getPokemonById(Long id);
 
     PokemonDTO updatePokemon(PokemonDTO pokemonDTO, long id);
+
+    void deletePokemonById(long id);
 }
