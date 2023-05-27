@@ -56,6 +56,31 @@ public class PokemonServiceImpl implements PokemonService {
         return mapToDTO(pokemon);
     }
 
+    @Override
+    public PokemonDTO updatePokemon(PokemonDTO pokemonDTO, long id) {
+        // Get pokemon by ID from the database - the same code as get id, so that we can get the pokemon by its id
+        Pokemon pokemon = pokemonRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Pokemon", "id", id));
+
+        // Now we have the object we can update its values
+        pokemon.setName(pokemonDTO.getName());
+        pokemon.setFrontSprite(pokemonDTO.getFrontSprite());
+        pokemon.setAbilityName1(pokemonDTO.getAbilityName1());
+        pokemon.setAbilityName2(pokemonDTO.getAbilityName2());
+        pokemon.setHp(pokemonDTO.getHp());
+        pokemon.setAttack(pokemonDTO.getAttack());
+        pokemon.setDefence(pokemonDTO.getDefence());
+        pokemon.setSpecialAttack(pokemonDTO.getSpecialAttack());
+        pokemon.setSpecialDefence(pokemonDTO.getSpecialDefence());
+        pokemon.setSpeed(pokemonDTO.getSpeed());
+
+        // Saving new values to the database
+        Pokemon updatedPokemon = pokemonRepository.save(pokemon);
+
+        // Returns the new values as a response DTO for the client
+        return mapToDTO(updatedPokemon);
+    }
+
     // Converts the DTO (from client) to entity (model) this contains all the fields from the model e.g. first name etc
     // This is excluding the id as it is used in the create method - we don't set the id manually
     private Pokemon mapToModel(PokemonDTO pokemonDTO) {

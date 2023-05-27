@@ -41,7 +41,19 @@ public class PokemonController {
     @GetMapping("/{id}")
     // Gets a single pokemon by their id (R of our CRUD methods)
     public ResponseEntity<PokemonDTO> getPokemonById(@PathVariable(name = "id")long id) {
-        // return status ok message along with the pokemonDTO
+        // Return status ok message along with the pokemonDTO
         return ResponseEntity.ok(pokemonService.getPokemonById(id));
+    }
+
+    //Tells Spring this is a PUT request
+    @PutMapping("/{id}")
+    // @RequestBody is the new input to update the database - it takes input as JSON
+    // gets the pokemon to update passing in the url bound to the @path variable as id
+    public ResponseEntity<PokemonDTO> updatePokemon(@RequestBody PokemonDTO pokemonDTO, @PathVariable(name = "id")long id) {
+        // Updates the DB with the new values
+        PokemonDTO pokemonResponse = pokemonService.updatePokemon(pokemonDTO, id);
+
+        // Returns status ok message along with the model values that have been updated
+        return new ResponseEntity<>(pokemonResponse, HttpStatus.OK);
     }
 }
