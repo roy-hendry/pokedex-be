@@ -13,7 +13,8 @@ public class PokemonDTO {
     // Same fields as the model class
     private Long id;
     private String name;
-    private String frontSprite;
+    private String basicSprite;
+    private String detailedSprite;
     private String abilityName1;
     private String abilityName2;
     private int hp;

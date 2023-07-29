@@ -21,17 +21,18 @@ import javax.persistence.*;
 public class Pokemon {
     // Indicates id as the primary key
     @Id
-    // Makes the id auto incremented
-    @GeneratedValue
     // Setting column names
     @Column(name = "id", nullable = false)
-    private Long id;
+    Long id;
 
     @Column(name = "name", nullable = false)
     String name;
 
-    @Column(name = "front_sprite", nullable = false)
-    String frontSprite;
+    @Column(name = "basic_sprite", nullable = false)
+    String basicSprite;
+
+    @Column(name = "detailed_sprite", nullable = false)
+    String detailedSprite;
 
     @Column(name = "ability_name_1", nullable = false)
     String abilityName1;

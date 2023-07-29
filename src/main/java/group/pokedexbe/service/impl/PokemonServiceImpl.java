@@ -74,7 +74,8 @@ public class PokemonServiceImpl implements PokemonService {
 
         // Now we have the object we can update its values
         pokemon.setName(pokemonDTO.getName());
-        pokemon.setFrontSprite(pokemonDTO.getFrontSprite());
+        pokemon.setBasicSprite(pokemonDTO.getBasicSprite());
+        pokemon.setDetailedSprite(pokemonDTO.getDetailedSprite());
         pokemon.setAbilityName1(pokemonDTO.getAbilityName1());
         pokemon.setAbilityName2(pokemonDTO.getAbilityName2());
         pokemon.setHp(pokemonDTO.getHp());
@@ -92,11 +93,12 @@ public class PokemonServiceImpl implements PokemonService {
     }
 
     // Converts the DTO (from client) to entity (model) this contains all the fields from the model e.g. first name etc
-    // This is excluding the id as it is used in the create method - we don't set the id manually
     private Pokemon mapToModel(PokemonDTO pokemonDTO) {
         Pokemon pokemon = new Pokemon();
+        pokemon.setId(pokemonDTO.getId());
         pokemon.setName(pokemonDTO.getName());
-        pokemon.setFrontSprite(pokemonDTO.getFrontSprite());
+        pokemon.setBasicSprite(pokemonDTO.getBasicSprite());
+        pokemon.setDetailedSprite(pokemonDTO.getDetailedSprite());
         pokemon.setAbilityName1(pokemonDTO.getAbilityName1());
         pokemon.setAbilityName2(pokemonDTO.getAbilityName2());
         pokemon.setHp(pokemonDTO.getHp());
@@ -115,7 +117,8 @@ public class PokemonServiceImpl implements PokemonService {
         PokemonDTO pokemonDTO = new PokemonDTO();
         pokemonDTO.setId(pokemon.getId());
         pokemonDTO.setName(pokemon.getName());
-        pokemonDTO.setFrontSprite(pokemon.getFrontSprite());
+        pokemonDTO.setBasicSprite(pokemon.getBasicSprite());
+        pokemonDTO.setDetailedSprite(pokemon.getDetailedSprite());
         pokemonDTO.setAbilityName1(pokemon.getAbilityName1());
         pokemonDTO.setAbilityName2(pokemon.getAbilityName2());
         pokemonDTO.setHp(pokemon.getHp());
