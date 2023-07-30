@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+// Used to enable CrossOrigin so that we can access all the methods through this controller
+// if we don't have this enabled we can't call our API from our frontend
+@CrossOrigin
 // Tells Spring this is a REST controller
 @RestController
 // Mapping for the REST endpoint
