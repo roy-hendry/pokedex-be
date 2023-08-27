@@ -74,6 +74,7 @@ public class PokemonServiceImpl implements PokemonService {
 
         // Now we have the object we can update its values
         pokemon.setName(pokemonDTO.getName());
+        pokemon.setCaught(pokemonDTO.isCaught());
         pokemon.setBasicSprite(pokemonDTO.getBasicSprite());
         pokemon.setDetailedSprite(pokemonDTO.getDetailedSprite());
         pokemon.setAbilityName1(pokemonDTO.getAbilityName1());
@@ -97,6 +98,7 @@ public class PokemonServiceImpl implements PokemonService {
         Pokemon pokemon = new Pokemon();
         pokemon.setId(pokemonDTO.getId());
         pokemon.setName(pokemonDTO.getName());
+        pokemon.setCaught(pokemonDTO.isCaught());
         pokemon.setBasicSprite(pokemonDTO.getBasicSprite());
         pokemon.setDetailedSprite(pokemonDTO.getDetailedSprite());
         pokemon.setAbilityName1(pokemonDTO.getAbilityName1());
@@ -117,6 +119,7 @@ public class PokemonServiceImpl implements PokemonService {
         PokemonDTO pokemonDTO = new PokemonDTO();
         pokemonDTO.setId(pokemon.getId());
         pokemonDTO.setName(pokemon.getName());
+        pokemonDTO.setCaught(pokemon.isCaught());
         pokemonDTO.setBasicSprite(pokemon.getBasicSprite());
         pokemonDTO.setDetailedSprite(pokemon.getDetailedSprite());
         pokemonDTO.setAbilityName1(pokemon.getAbilityName1());

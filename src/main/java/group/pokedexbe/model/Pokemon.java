@@ -28,6 +28,9 @@ public class Pokemon {
     @Column(name = "name", nullable = false)
     String name;
 
+    @Column(name = "is_caught", nullable = false)
+    boolean isCaught;
+
     @Column(name = "basic_sprite", nullable = false)
     String basicSprite;
 
@@ -57,5 +60,4 @@ public class Pokemon {
 
     @Column(name = "speed", nullable = false)
     int speed;
-
 }

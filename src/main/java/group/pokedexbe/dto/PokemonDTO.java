@@ -7,12 +7,13 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
 @Getter
+@Setter
 public class PokemonDTO {
     // Same fields as the model class
     private Long id;
     private String name;
+    private boolean isCaught;
     private String basicSprite;
     private String detailedSprite;
     private String abilityName1;
@@ -23,4 +24,5 @@ public class PokemonDTO {
     private int specialAttack;
     private int specialDefence;
     private int speed;
+
 }
