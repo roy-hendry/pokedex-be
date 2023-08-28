@@ -15,4 +15,6 @@ public interface PokemonService {
     PokemonDTO updatePokemon(PokemonDTO pokemonDTO, long id);
 
     void deletePokemonById(long id);
+
+    PokemonDTO invertIsCapturedState(PokemonDTO pokemonDTO, long id);
 }
