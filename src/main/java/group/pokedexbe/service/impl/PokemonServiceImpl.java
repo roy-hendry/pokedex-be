@@ -94,13 +94,13 @@ public class PokemonServiceImpl implements PokemonService {
     }
 
     @Override
-    public PokemonDTO invertIsCapturedState(PokemonDTO pokemonDTO, long id) {
-        // Get pokemon by id from the database - the same code as get id, so that we can get the pokemon by its id
+    public PokemonDTO toggleIsCapturedState(Long id) {
+        // Get pokemon by id from the database
         Pokemon pokemon = pokemonRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Pokémon", "id", id));
 
-        // Now we have the object we can update its values
-        pokemon.setCaught(!pokemonDTO.isCaught());
+        // Now we have the object we can toggle it's value
+        pokemon.setCaught(!pokemon.isCaught());
 
         // Saving new values to the database
         Pokemon updatedPokemon = pokemonRepository.save(pokemon);

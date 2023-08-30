@@ -70,4 +70,14 @@ public class PokemonController {
         // Returns status to say that we have successfully deleted
         return new ResponseEntity<>("Pokemon has been deleted successfully", HttpStatus.OK);
     }
+
+    @PutMapping
+    // @RequestBody is the new input to update the database - it takes input as JSON
+    public ResponseEntity<PokemonDTO> toggleIsCapturedState(@RequestBody Long id) {
+        // Updates the DB with the new values
+        PokemonDTO pokemonResponse = pokemonService.toggleIsCapturedState(id);
+
+        // Returns status ok message along with the model values that have been updated
+        return new ResponseEntity<>(pokemonResponse, HttpStatus.OK);
+    }
 }

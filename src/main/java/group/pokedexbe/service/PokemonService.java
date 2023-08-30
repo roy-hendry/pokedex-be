@@ -16,5 +16,5 @@ public interface PokemonService {
 
     void deletePokemonById(long id);
 
-    PokemonDTO invertIsCapturedState(PokemonDTO pokemonDTO, long id);
+    PokemonDTO toggleIsCapturedState(Long id);
 }
