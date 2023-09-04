@@ -30,42 +30,52 @@ class PokemonServiceImplTest {
         pokemonServiceImpl = new PokemonServiceImpl(pokemonRepositoryMock);
     }
 
-    @DisplayName("Testing that whatever the values of the DTO we send in are the same as what we get back")
+    @DisplayName("Testing that whatever the values of the DTO we send in are the same as what we get back" +
+            "WHEN calling createPokemon; " +
+            "GIVEN valid pokemon data; " +
+            "THEN maps DTO to a pokemon and calls the save to repo method"
+    )
     @Test
     void createPokemon_happyPathOne() {
-//        PokemonDTO pokemonDTO = Pokem0onDTO.builder()
-//                .id(123L)
-//                .name("Pikabloo")
-//                .isCaught(false)
-//                .basicSprite("basicSprite")
-//                .detailedSprite("detailedSprite")
-//                .abilityName1("abilityName1")
-//                .abilityName2("abilityName2")
-//                .hp(100)
-//                .attack(111)
-//                .defence(222)
-//                .specialAttack(333)
-//                .specialDefence(444)
-//                .speed(5)
-//                .build();
 
-//        Pokemon pokemon = Pokemon.builder()
-//                .id(123L)
-//                .name("Pikabloo")
-//                .isCaught(false)
-//                .basicSprite("basicSprite")
-//                .detailedSprite("detailedSprite")
-//                .abilityName1("abilityName1")
-//                .abilityName2("abilityName2")
-//                .hp(100)
-//                .attack(111)
-//                .defence(222)
-//                .specialAttack(333)
-//                .specialDefence(444)
-//                .speed(5)
-//                .build();
+        // Arrange
+        PokemonDTO pokemonDTO = PokemonDTO.builder()
+                .id(123L)
+                .name("Pikabloo")
+                .isCaught(false)
+                .basicSprite("basicSprite")
+                .detailedSprite("detailedSprite")
+                .abilityName1("abilityName1")
+                .abilityName2("abilityName2")
+                .hp(100)
+                .attack(111)
+                .defence(222)
+                .specialAttack(333)
+                .specialDefence(444)
+                .speed(5)
+                .build();
 
-//        assertTrue(new ReflectionEquals(pokemonDTO).matches(pokemonDTO));
+        Pokemon newPokemon = Pokemon.builder()
+                .id(123L)
+                .name("Pikabloo")
+                .isCaught(false)
+                .basicSprite("basicSprite")
+                .detailedSprite("detailedSprite")
+                .abilityName1("abilityName1")
+                .abilityName2("abilityName2")
+                .hp(100)
+                .attack(111)
+                .defence(222)
+                .specialAttack(333)
+                .specialDefence(444)
+                .speed(5)
+                .build();
+
+        when(pokemonRepositoryMock.save(any())).thenReturn(newPokemon);
+
+        // Act & Assert
+        assertTrue(new ReflectionEquals(pokemonDTO).matches(pokemonServiceImpl.createPokemon(pokemonDTO)));
+        verify(pokemonRepositoryMock).save(any());
     }
 
     @DisplayName("" +
@@ -75,9 +85,9 @@ class PokemonServiceImplTest {
     )
     @Test
     void getAllPokemon_happyPathOne() {
-        List<PokemonDTO> expectedPokemonDTOList = Arrays.asList(
 
-                // Arrange
+        // Arrange
+        List<PokemonDTO> expectedPokemonDTOList = Arrays.asList(
                 PokemonDTO.builder()
                         .id(1L)
                         .name("Bulbasaur")
