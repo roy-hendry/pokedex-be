@@ -191,7 +191,7 @@ class PokemonServiceImplTest {
             "THEN returns a DTO generated from that pokemon"
     )
     @Test
-    void getPokemonById_happyPathOne() {
+    void getPokemonById_happyPath() {
 
         // Arrange
         Pokemon pokemonInRepo = Pokemon.builder()
@@ -240,7 +240,7 @@ class PokemonServiceImplTest {
             "THEN throws a ResourceNotFound exception; "
     )
     @Test
-    void getPokemonById_sadPathOne() {
+    void getPokemonById_sadPath() {
 
         // Arrange
         when(pokemonRepositoryMock.findById(404L)).thenReturn(Optional.empty());
@@ -253,8 +253,58 @@ class PokemonServiceImplTest {
         verify(pokemonRepositoryMock).findById(404L);
     }
 
+    @DisplayName("" +
+            "WHEN calling deletePokemonById; " +
+            "GIVEN an id of a pokemon in the repository; " +
+            "THEN calls the delete method"
+    )
     @Test
-    void deletePokemonById() {
+    void deletePokemonById_happyPath() {
+
+        // Arrange
+        Pokemon pokemonInRepo = Pokemon.builder()
+                .id(123L)
+                .name("Pikabloo")
+                .isCaught(false)
+                .basicSprite("basicSprite")
+                .detailedSprite("detailedSprite")
+                .abilityName1("abilityName1")
+                .abilityName2("abilityName2")
+                .hp(100)
+                .attack(111)
+                .defence(222)
+                .specialAttack(333)
+                .specialDefence(444)
+                .speed(5)
+                .build();
+
+        when(pokemonRepositoryMock.findById(123L)).thenReturn(Optional.ofNullable(pokemonInRepo));
+
+        // Act
+        pokemonServiceImpl.deletePokemonById(123L);
+
+        // Assert
+        verify(pokemonRepositoryMock).findById(123L);
+        verify(pokemonRepositoryMock).delete(pokemonInRepo);
+    }
+
+    @DisplayName("" +
+            "WHEN calling deletePokemonById; " +
+            "GIVEN an id of a pokemon not in the repository; " +
+            "THEN throws a ResourceNotFound exception; "
+    )
+    @Test
+    void deletePokemonById_sadPath() {
+
+        // Arrange
+        when(pokemonRepositoryMock.findById(404L)).thenReturn(Optional.empty());
+
+        // Act & Assert
+        assertThrows(ResourceNotFoundException.class, () -> {
+            pokemonServiceImpl.getPokemonById(404L);
+        });
+
+        verify(pokemonRepositoryMock).findById(404L);
     }
 
     @Test
