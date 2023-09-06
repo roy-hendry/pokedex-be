@@ -33,7 +33,8 @@ class PokemonServiceImplTest {
     @DisplayName("Testing that whatever the values of the DTO we send in are the same as what we get back" +
             "WHEN calling createPokemon; " +
             "GIVEN valid pokemon data; " +
-            "THEN maps DTO to a pokemon and calls the save to repo method"
+            "THEN maps DTO to a pokemon " +
+            " AND calls the save to repo method"
     )
     @Test
     void createPokemon_happyPathOne() {
@@ -307,8 +308,93 @@ class PokemonServiceImplTest {
         verify(pokemonRepositoryMock).findById(404L);
     }
 
+    @DisplayName("" +
+            "WHEN calling updatePokemon; " +
+            "GIVEN an id of a pokemon in the database" +
+            " AND a modified pokemonDTO; " +
+            "THEN calls the save method" +
+            " AND returns the newly updated pokemonDTO"
+    )
     @Test
-    void updatePokemon() {
+    void updatePokemon_happyPath() {
+
+        // Arrange
+        Pokemon pokemonInRepo = Pokemon.builder()
+                .id(123L)
+                .name("Pikabloo")
+                .isCaught(false)
+                .basicSprite("basicSprite")
+                .detailedSprite("detailedSprite")
+                .abilityName1("abilityName1")
+                .abilityName2("abilityName2")
+                .hp(100)
+                .attack(111)
+                .defence(222)
+                .specialAttack(333)
+                .specialDefence(444)
+                .speed(5)
+                .build();
+
+        PokemonDTO modifiedPokemonDTO = PokemonDTO.builder()
+                .id(444L)
+                .name("Tanjed")
+                .isCaught(true)
+                .basicSprite("basicSprite")
+                .detailedSprite("detailedSprite")
+                .abilityName1("abilityName1")
+                .abilityName2("abilityName2")
+                .hp(100)
+                .attack(111)
+                .defence(222)
+                .specialAttack(333)
+                .specialDefence(444)
+                .speed(5)
+                .build();
+
+        PokemonDTO expectedPokemonDTO = PokemonDTO.builder()
+                .id(444L)
+                .name("Tanjed")
+                .isCaught(true)
+                .basicSprite("basicSprite")
+                .detailedSprite("detailedSprite")
+                .abilityName1("abilityName1")
+                .abilityName2("abilityName2")
+                .hp(100)
+                .attack(111)
+                .defence(222)
+                .specialAttack(333)
+                .specialDefence(444)
+                .speed(5)
+                .build();
+
+        when(pokemonRepositoryMock.findById(123L)).thenReturn(Optional.ofNullable(pokemonInRepo));
+        when(pokemonRepositoryMock.save(pokemonInRepo)).thenReturn(pokemonInRepo);
+
+        // Act & Assert
+        assertTrue(new ReflectionEquals(expectedPokemonDTO).matches(pokemonServiceImpl.updatePokemon(modifiedPokemonDTO, 123L)));
+
+        verify(pokemonRepositoryMock).findById(123L);
+        verify(pokemonRepositoryMock).save(pokemonInRepo);
+    }
+
+    @DisplayName("" +
+            "WHEN calling updatePokemon; " +
+            "GIVEN an id of a pokemon not in the repository; " +
+            "THEN throws a ResourceNotFound exception; "
+    )
+    @Test
+    void updatePokemon_sadPath() {
+
+        // Arrange
+        when(pokemonRepositoryMock.findById(404L)).thenReturn(Optional.empty());
+
+        // Act & Assert
+        assertThrows(ResourceNotFoundException.class, () -> {
+            pokemonServiceImpl.getPokemonById(404L);
+        });
+
+        verify(pokemonRepositoryMock).findById(404L);
+        verify(pokemonRepositoryMock, never()).save(any());
     }
 
     @Test
