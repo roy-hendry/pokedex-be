@@ -73,7 +73,6 @@ public class PokemonServiceImpl implements PokemonService {
                 .orElseThrow(() -> new ResourceNotFoundException("Pokémon", "id", id));
 
         // Now we have the object we can update its values
-        pokemon.setId(pokemonDTO.getId());
         pokemon.setName(pokemonDTO.getName());
         pokemon.setCaught(pokemonDTO.isCaught());
         pokemon.setBasicSprite(pokemonDTO.getBasicSprite());
@@ -100,7 +99,7 @@ public class PokemonServiceImpl implements PokemonService {
         Pokemon pokemon = pokemonRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Pokémon", "id", id));
 
-        // Now we have the object we can toggle it's value
+        // Now we have the object we can toggle its value
         pokemon.setCaught(!pokemon.isCaught());
 
         // Saving new values to the database
