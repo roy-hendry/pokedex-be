@@ -30,7 +30,8 @@ class PokemonServiceImplTest {
         pokemonServiceImpl = new PokemonServiceImpl(pokemonRepositoryMock);
     }
 
-    @DisplayName("Testing that whatever the values of the DTO we send in are the same as what we get back" +
+    @DisplayName("" +
+            "Testing that whatever the values of the DTO we send in are the same as what we get back" +
             "WHEN calling createPokemon; " +
             "GIVEN valid pokemon data; " +
             "THEN maps DTO to a pokemon " +
