@@ -43,7 +43,7 @@ public class PokemonController {
     // Tells Spring this is a GET request
     @GetMapping("/{id}")
     // Gets a single pokemon by their id (R of our CRUD methods)
-    public ResponseEntity<PokemonDTO> getPokemonById(@PathVariable(name = "id")long id) {
+    public ResponseEntity<PokemonDTO> getPokemonById(@PathVariable(name = "id") long id) {
         // Return status ok message along with the pokemonDTO
         return new ResponseEntity<>(pokemonService.getPokemonById(id), HttpStatus.OK);
     }
@@ -52,7 +52,7 @@ public class PokemonController {
     @PutMapping("/{id}")
     // @RequestBody is the new input to update the database - it takes input as JSON
     // Gets the pokemon to update by passing in the id via the @PathVariable
-    public ResponseEntity<PokemonDTO> updatePokemon(@RequestBody PokemonDTO pokemonDTO, @PathVariable(name = "id")long id) {
+    public ResponseEntity<PokemonDTO> updatePokemon(@RequestBody PokemonDTO pokemonDTO, @PathVariable(name = "id") long id) {
         // Updates the DB with the new values
         PokemonDTO pokemonResponse = pokemonService.updatePokemon(pokemonDTO, id);
 
@@ -63,7 +63,7 @@ public class PokemonController {
     // Tells Spring this is a DELETE request
     @DeleteMapping("/{id}")
     // Gets the pokemon to delete by passing in the id via the @PathVariable
-    public ResponseEntity<String> deletePokemon(@PathVariable(name = "id")long id) {
+    public ResponseEntity<String> deletePokemon(@PathVariable(name = "id") long id) {
         // Passes the id of the pokemon we want to delete
         pokemonService.deletePokemonById(id);
 
@@ -73,9 +73,9 @@ public class PokemonController {
 
     @PutMapping
     // @RequestBody is the new input to update the database - it takes input as JSON
-    public ResponseEntity<PokemonDTO> toggleIsCapturedState(@RequestBody Long id) {
+    public ResponseEntity<PokemonDTO> toggleIsCapturedState(@RequestBody PokemonDTO pokemonDTO) {
         // Updates the DB with the new values
-        PokemonDTO pokemonResponse = pokemonService.toggleIsCapturedState(id);
+        PokemonDTO pokemonResponse = pokemonService.toggleIsCapturedState(pokemonDTO);
 
         // Returns status ok message along with the model values that have been updated
         return new ResponseEntity<>(pokemonResponse, HttpStatus.OK);

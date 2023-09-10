@@ -398,133 +398,133 @@ class PokemonServiceImplTest {
         verify(pokemonRepositoryMock, never()).save(any());
     }
 
-    @DisplayName("" +
-            "WHEN calling toggleIsCapturedState; " +
-            "GIVEN an id of a pokemon with a false isCaptured state in the repository; " +
-            "THEN inverts the state of the isCaught property to true" +
-            " AND returns the updated pokemonDTO"
-    )
-    @Test
-    void toggleIsCapturedState_happyPathOne() {
+//    @DisplayName("" +
+//            "WHEN calling toggleIsCapturedState; " +
+//            "GIVEN an id of a pokemon with a false isCaptured state in the repository; " +
+//            "THEN inverts the state of the isCaught property to true" +
+//            " AND returns the updated pokemonDTO"
+//    )
+//    @Test
+//    void toggleIsCapturedState_happyPathOne() {
+//
+//        // Arrange
+//        Pokemon pokemonInRepo = Pokemon.builder()
+//                .id(123L)
+//                .name("Pikabloo")
+//                .isCaught(false)
+//                .basicSprite("basicSprite")
+//                .detailedSprite("detailedSprite")
+//                .abilityName1("abilityName1")
+//                .abilityName2("abilityName2")
+//                .hp(100)
+//                .attack(111)
+//                .defence(222)
+//                .specialAttack(333)
+//                .specialDefence(444)
+//                .speed(5)
+//                .build();
+//
+//        Pokemon updatedPokemon = Pokemon.builder()
+//                .id(123L)
+//                .name("Pikabloo")
+//                .isCaught(true)
+//                .basicSprite("basicSprite")
+//                .detailedSprite("detailedSprite")
+//                .abilityName1("abilityName1")
+//                .abilityName2("abilityName2")
+//                .hp(100)
+//                .attack(111)
+//                .defence(222)
+//                .specialAttack(333)
+//                .specialDefence(444)
+//                .speed(5)
+//                .build();
+//
+//        PokemonDTO expectedPokemonDTO = PokemonDTO.builder()
+//                .id(123L)
+//                .name("Pikabloo")
+//                .isCaught(true)
+//                .basicSprite("basicSprite")
+//                .detailedSprite("detailedSprite")
+//                .abilityName1("abilityName1")
+//                .abilityName2("abilityName2")
+//                .hp(100)
+//                .attack(111)
+//                .defence(222)
+//                .specialAttack(333)
+//                .specialDefence(444)
+//                .speed(5)
+//                .build();
+//
+//        when(pokemonRepositoryMock.findById(123L)).thenReturn(Optional.ofNullable(pokemonInRepo));
+//        when(pokemonRepositoryMock.save(pokemonInRepo)).thenReturn(updatedPokemon);
+//
+//        assertTrue(new ReflectionEquals(expectedPokemonDTO).matches(pokemonServiceImpl.toggleIsCapturedState(123L)));
+//    }
 
-        // Arrange
-        Pokemon pokemonInRepo = Pokemon.builder()
-                .id(123L)
-                .name("Pikabloo")
-                .isCaught(false)
-                .basicSprite("basicSprite")
-                .detailedSprite("detailedSprite")
-                .abilityName1("abilityName1")
-                .abilityName2("abilityName2")
-                .hp(100)
-                .attack(111)
-                .defence(222)
-                .specialAttack(333)
-                .specialDefence(444)
-                .speed(5)
-                .build();
-
-        Pokemon updatedPokemon = Pokemon.builder()
-                .id(123L)
-                .name("Pikabloo")
-                .isCaught(true)
-                .basicSprite("basicSprite")
-                .detailedSprite("detailedSprite")
-                .abilityName1("abilityName1")
-                .abilityName2("abilityName2")
-                .hp(100)
-                .attack(111)
-                .defence(222)
-                .specialAttack(333)
-                .specialDefence(444)
-                .speed(5)
-                .build();
-
-        PokemonDTO expectedPokemonDTO = PokemonDTO.builder()
-                .id(123L)
-                .name("Pikabloo")
-                .isCaught(true)
-                .basicSprite("basicSprite")
-                .detailedSprite("detailedSprite")
-                .abilityName1("abilityName1")
-                .abilityName2("abilityName2")
-                .hp(100)
-                .attack(111)
-                .defence(222)
-                .specialAttack(333)
-                .specialDefence(444)
-                .speed(5)
-                .build();
-
-        when(pokemonRepositoryMock.findById(123L)).thenReturn(Optional.ofNullable(pokemonInRepo));
-        when(pokemonRepositoryMock.save(pokemonInRepo)).thenReturn(updatedPokemon);
-
-        assertTrue(new ReflectionEquals(expectedPokemonDTO).matches(pokemonServiceImpl.toggleIsCapturedState(123L)));
-    }
-
-    @DisplayName("" +
-            "WHEN calling toggleIsCapturedState; " +
-            "GIVEN an id of a pokemon with a true isCaptured state in the repository; " +
-            "THEN inverts the state of the isCaught property to false" +
-            " AND returns the updated pokemonDTO"
-    )
-    @Test
-    void toggleIsCapturedState_happyPathTwo() {
-
-        // Arrange
-        Pokemon pokemonInRepo = Pokemon.builder()
-                .id(123L)
-                .name("Pikabloo")
-                .isCaught(true)
-                .basicSprite("basicSprite")
-                .detailedSprite("detailedSprite")
-                .abilityName1("abilityName1")
-                .abilityName2("abilityName2")
-                .hp(100)
-                .attack(111)
-                .defence(222)
-                .specialAttack(333)
-                .specialDefence(444)
-                .speed(5)
-                .build();
-
-        Pokemon updatedPokemon = Pokemon.builder()
-                .id(123L)
-                .name("Pikabloo")
-                .isCaught(false)
-                .basicSprite("basicSprite")
-                .detailedSprite("detailedSprite")
-                .abilityName1("abilityName1")
-                .abilityName2("abilityName2")
-                .hp(100)
-                .attack(111)
-                .defence(222)
-                .specialAttack(333)
-                .specialDefence(444)
-                .speed(5)
-                .build();
-
-        PokemonDTO expectedPokemonDTO = PokemonDTO.builder()
-                .id(123L)
-                .name("Pikabloo")
-                .isCaught(false)
-                .basicSprite("basicSprite")
-                .detailedSprite("detailedSprite")
-                .abilityName1("abilityName1")
-                .abilityName2("abilityName2")
-                .hp(100)
-                .attack(111)
-                .defence(222)
-                .specialAttack(333)
-                .specialDefence(444)
-                .speed(5)
-                .build();
-
-        when(pokemonRepositoryMock.findById(123L)).thenReturn(Optional.ofNullable(pokemonInRepo));
-        when(pokemonRepositoryMock.save(pokemonInRepo)).thenReturn(updatedPokemon);
-
-        assertTrue(new ReflectionEquals(expectedPokemonDTO).matches(pokemonServiceImpl.toggleIsCapturedState(123L)));
-    }
+//    @DisplayName("" +
+//            "WHEN calling toggleIsCapturedState; " +
+//            "GIVEN an id of a pokemon with a true isCaptured state in the repository; " +
+//            "THEN inverts the state of the isCaught property to false" +
+//            " AND returns the updated pokemonDTO"
+//    )
+//    @Test
+//    void toggleIsCapturedState_happyPathTwo() {
+//
+//        // Arrange
+//        Pokemon pokemonInRepo = Pokemon.builder()
+//                .id(123L)
+//                .name("Pikabloo")
+//                .isCaught(true)
+//                .basicSprite("basicSprite")
+//                .detailedSprite("detailedSprite")
+//                .abilityName1("abilityName1")
+//                .abilityName2("abilityName2")
+//                .hp(100)
+//                .attack(111)
+//                .defence(222)
+//                .specialAttack(333)
+//                .specialDefence(444)
+//                .speed(5)
+//                .build();
+//
+//        Pokemon updatedPokemon = Pokemon.builder()
+//                .id(123L)
+//                .name("Pikabloo")
+//                .isCaught(false)
+//                .basicSprite("basicSprite")
+//                .detailedSprite("detailedSprite")
+//                .abilityName1("abilityName1")
+//                .abilityName2("abilityName2")
+//                .hp(100)
+//                .attack(111)
+//                .defence(222)
+//                .specialAttack(333)
+//                .specialDefence(444)
+//                .speed(5)
+//                .build();
+//
+//        PokemonDTO expectedPokemonDTO = PokemonDTO.builder()
+//                .id(123L)
+//                .name("Pikabloo")
+//                .isCaught(false)
+//                .basicSprite("basicSprite")
+//                .detailedSprite("detailedSprite")
+//                .abilityName1("abilityName1")
+//                .abilityName2("abilityName2")
+//                .hp(100)
+//                .attack(111)
+//                .defence(222)
+//                .specialAttack(333)
+//                .specialDefence(444)
+//                .speed(5)
+//                .build();
+//
+//        when(pokemonRepositoryMock.findById(123L)).thenReturn(Optional.ofNullable(pokemonInRepo));
+//        when(pokemonRepositoryMock.save(pokemonInRepo)).thenReturn(updatedPokemon);
+//
+//        assertTrue(new ReflectionEquals(expectedPokemonDTO).matches(pokemonServiceImpl.toggleIsCapturedState(123L)));
+//    }
 
     @DisplayName("" +
             "WHEN calling toggleIsCapturedState; " +

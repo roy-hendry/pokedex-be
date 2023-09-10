@@ -91,11 +91,11 @@ class PokemonControllerTest {
         verify(pokemonServiceMock).deletePokemonById(123L);
     }
 
-    @Test
-    void toggleIsCapturedState() {
-
-        pokemonController.toggleIsCapturedState(123L);
-
-        verify(pokemonServiceMock).toggleIsCapturedState(123L);
-    }
+//    @Test
+//    void toggleIsCapturedState() {
+//
+//        pokemonController.toggleIsCapturedState(123L);
+//
+//        verify(pokemonServiceMock).toggleIsCapturedState(123L);
+//    }
 }

@@ -94,10 +94,10 @@ public class PokemonServiceImpl implements PokemonService {
     }
 
     @Override
-    public PokemonDTO toggleIsCapturedState(Long id) {
+    public PokemonDTO toggleIsCapturedState(PokemonDTO pokemonDTO) {
         // Get pokemon by id from the database
-        Pokemon pokemon = pokemonRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Pokémon", "id", id));
+        Pokemon pokemon = pokemonRepository.findById(pokemonDTO.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Pokémon", "id", pokemonDTO.getId()));
 
         // Now we have the object we can toggle its value
         pokemon.setCaught(!pokemon.isCaught());
