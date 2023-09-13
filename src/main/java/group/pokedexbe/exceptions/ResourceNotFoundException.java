@@ -1,6 +1,5 @@
 package group.pokedexbe.exceptions;
 
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -29,18 +28,4 @@ public class ResourceNotFoundException extends RuntimeException {
 
         this.fieldValue = fieldValue;
     }
-
-    // Getters because for some reason lombok isn't letting me use the annotation here
-    public String getResourceName() {
-        return resourceName;
-    }
-
-    public String getFieldName() {
-        return fieldName;
-    }
-
-    public long getFieldValue() {
-        return fieldValue;
-    }
-
 }
