@@ -91,11 +91,27 @@ class PokemonControllerTest {
         verify(pokemonServiceMock).deletePokemonById(123L);
     }
 
-//    @Test
-//    void toggleIsCapturedState() {
-//
-//        pokemonController.toggleIsCapturedState(123L);
-//
-//        verify(pokemonServiceMock).toggleIsCapturedState(123L);
-//    }
+    @Test
+    void toggleIsCapturedState() {
+
+        PokemonDTO pokemonDTO = PokemonDTO.builder()
+                .id(123L)
+                .name("Pikabloo")
+                .isCaught(false)
+                .basicSprite("basicSprite")
+                .detailedSprite("detailedSprite")
+                .abilityName1("abilityName1")
+                .abilityName2("abilityName2")
+                .hp(100)
+                .attack(111)
+                .defence(222)
+                .specialAttack(333)
+                .specialDefence(444)
+                .speed(5)
+                .build();
+
+        pokemonController.toggleIsCapturedState(pokemonDTO);
+
+        verify(pokemonServiceMock).toggleIsCapturedState(pokemonDTO);
+    }
 }
